@@ -1,7 +1,11 @@
 const express =require("express")
+const cors = require("cors");
+
+
 
 const app = express();
 
+app.use(cors())
 app.get("/", function(req,res){
 
  const file  ={
@@ -13,9 +17,13 @@ app.get("/", function(req,res){
   res.send(file);
 });
 
-  
 
 
-app.listen(3000,function(){
+let port = process.env.PORT;
+if(port == null || port ==""){
+  port = 3000;
+}
+
+app.listen(port,function(){
   console.log("server started on port 3000 go");
 })
